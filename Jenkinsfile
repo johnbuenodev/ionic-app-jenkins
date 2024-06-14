@@ -52,23 +52,31 @@ pipeline {
             }
         }
 
+        stage('Firebase Distribution') {
+            steps {
+			    sh "cd android && ./gradlew appDistributionUploadRelease"
+                        /* sh "./gradlew appDistributionUploadRelease" */
+            }
+        }
+
+        /*
         stage('Publish') {
-            /* parallel { */
+            parallel { 
                 stage('Firebase Distribution') {
                     steps {
 					    sh "cd android && ./gradlew appDistributionUploadRelease"
-                        /* sh "./gradlew appDistributionUploadRelease" */
+                        sh "./gradlew appDistributionUploadRelease"
                     }
                 }
 
-                /*
+                
                 stage('Google Play...') {
                     steps {
                         sh "echo 'Test...'"
                     }
-                } */
-            /* } */
-        } 
+                } 
+            } 
+        } */
     }
 
     post {
