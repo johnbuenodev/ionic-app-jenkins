@@ -21,7 +21,7 @@ pipeline {
 
         stage('Checkout git') {
             steps {
-                git branch: branch, credentialsId: 'ionic6', url: url
+                git branch: 'main', credentialsId: 'ionic6', url: url
             }
         }
 
