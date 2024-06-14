@@ -4,11 +4,12 @@ pipeline {
         docker {
             image 'androidsdk/android-30'
         }
+        tools {
+        jdk 'jdk17'
+        }
     }
 
-    tools {
-        jdk 'jdk17'
-    }
+    
     /* agent { label 'mac' } */
 
     environment {
