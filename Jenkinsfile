@@ -5,6 +5,10 @@ pipeline {
             image 'androidsdk/android-30'
         }
     }
+
+    tools {
+        jdk 'jdk17'
+    }
     /* agent { label 'mac' } */
 
     environment {
@@ -37,7 +41,7 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId: 'ANDROID_KEYSTORE_FILE', variable: 'ANDROID_KEYSTORE_FILE')]) {
                     sh "cp '${ANDROID_KEYSTORE_FILE}' android/app/tasks.jks"
-                    sh "cat android/app/hello.jks"
+                    sh "cat android/app/tasks.jks"
                 }
                 withCredentials([file(credentialsId: 'FIREBASE_SERVICE_ACCOUNT_FILE', variable: 'FIREBASE_SERVICE_ACCOUNT_FILE')]) {
                     sh "cp '${FIREBASE_SERVICE_ACCOUNT_FILE}' android/app/service-account-firebasedist.json"
@@ -81,7 +85,7 @@ pipeline {
 
     post {
        always {
-           sh "rm android/app/hello.jks"
+           sh "rm android/app/tasks.jks" 
            sh "rm android/app/service-account-firebasedist.json"
        }
     }
