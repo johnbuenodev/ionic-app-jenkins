@@ -41,12 +41,16 @@ pipeline {
         stage('Credentials') {
             steps {
                 withCredentials([file(credentialsId: 'ANDROID_KEYSTORE_FILE', variable: 'ANDROID_KEYSTORE_FILE')]) {
-                    sh "cp '${ANDROID_KEYSTORE_FILE}' android/app/tasks.jks"
-                    sh "cat android/app/tasks.jks"
+                    sh "echo testando"
+                    sh "mkir android/app/build/outputs/apk/release"
+                    //sh "cp '${ANDROID_KEYSTORE_FILE}' android/app/tasks.jks"
+                    //sh "cat android/app/tasks.jks"
                 }
                 withCredentials([file(credentialsId: 'FIREBASE_SERVICE_ACCOUNT_FILE', variable: 'FIREBASE_SERVICE_ACCOUNT_FILE')]) {
-                    sh "cp '${FIREBASE_SERVICE_ACCOUNT_FILE}' android/app/service-account-firebasedist.json"
-                    sh "cat android/app/service-account-firebasedist.json"
+                    sh "echo testando outro credencial"
+                    sh "echo ${FIREBASE_SERVICE_ACCOUNT_FILE}"
+                    //sh "cp '${FIREBASE_SERVICE_ACCOUNT_FILE}' android/app/service-account-firebasedist.json"
+                    //sh "cat android/app/service-account-firebasedist.json"
                 }
             }
         }
